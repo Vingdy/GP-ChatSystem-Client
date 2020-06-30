@@ -1,0 +1,46 @@
+<div class="top-box">
+    <div class="top-title-box">
+        <span class="top-title">在线聊天室 Let's Talk</span>    
+    </div>
+</div>
+<div class="main-box">
+    <div class="login-box">
+        <div class="title-box">
+            注册
+        </div>
+        <div style="width: 100%; min-width: 320px; margin-top:1rem;">
+            <label style="float:left; padding-top:0.5rem; padding-right: 15px; width:20%;">账号</label>
+            <input class="el-input__inner" style="width: 75%;"
+            require #rangeLength="ngModel" [rangeLength]="[4, 10]"
+            [(ngModel)]="UserName" placeholder="请输入账号">
+            <p style="color:red; font-size:10px;" [hidden]="rangeLength.valid||rangeLength.pristine">长度在4到10之间</p>
+        </div>
+        <div style="width: 100%; min-width: 320px; margin-top:1rem;">
+            <label style="float:left; padding-top:0.5rem; padding-right: 15px; width:20%;">昵称</label>
+            <input class="el-input__inner" style="width: 75%;"
+             require #rangeLength2="ngModel" [rangeLength]="[1, 15]"
+             [(ngModel)]="NickName" placeholder="请输入昵称">
+             <p style="color:red; font-size:10px;" [hidden]="rangeLength2.valid||rangeLength2.pristine">长度在1到15之间</p>
+        </div>
+        <div style="width: 100%; min-width: 320px; margin-top:1rem;">
+            <label style="float:left; padding-top:0.5rem; padding-right: 15px; width:20%;">密码</label>
+            <input class="el-input__inner" type="password" style="width: 75%;"
+            require #rangeLength3="ngModel" [rangeLength]="[4, 10]"
+            [(ngModel)]="PassWord" placeholder="请输入密码">
+            <p style="color:red; font-size:10px;" [hidden]="rangeLength3.valid||rangeLength3.pristine">长度在4到10之间</p>
+        </div>
+        <div style="width: 100%; min-width: 320px; margin-top:1rem;">
+            <label style="float:left; padding-top:0.5rem; padding-right: 15px; width:20%;">重复密码</label>
+            <input class="el-input__inner" type="password" style="width:75%;"
+            require #rangeLength4="ngModel" [rangeLength]="[4, 10]"
+            [(ngModel)]="SecPassWord" placeholder="请输入密码">
+            <p style="color:red; font-size:10px;" [hidden]="rangeLength4.valid||rangeLength4.pristine">长度在4到10之间</p>
+        </div>
+        <div style="width: 100%; min-width: 320px; text-align: right;">
+            <el-button type="text" style="margin-bottom: 32px;" justify="space-between" (click)="ToLogin()">已有账号？立即登录</el-button>
+        </div>
+        <div style="width: 100%; min-width: 320px;">
+            <el-button type="primary" style="width:100%;" justify="space-between" (click)="Register()">注册</el-button>
+        </div>
+    </div>
+</div>

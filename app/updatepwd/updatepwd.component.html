@@ -1,0 +1,43 @@
+<div class="top-box">
+    <div class="top-title-box">
+        <div class="top-title">在线聊天室 Let's Talk</div>
+        <div class="user-box">
+            <div class="nav-box" (click)=LogOut()>
+                <a>退出登录</a>
+            </div>
+            <div class="nav-box" (click)=ToUserInfo()>
+                <a>我的信息</a>
+            </div>
+            <div class="nav-box" (click)=ToFriend()>
+                <a>查看好友</a>
+            </div>
+            <div *ngIf="this.User.Role == 'member'" class="nav-box" (click)=ToCreateRoom()>
+                <a>创建房间</a>
+            </div>
+            <div class="wel-box">
+                欢迎来到聊天室，{{UserName}}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main-box">
+    <div style="position: absolute; top: 5rem; left: 2rem;" >
+        <a [routerLink]="['/user']" [queryParams] = "{userid:this.Id}"><<返回上级</a>
+    </div>
+    <div class="login-box">
+        <div class="title-box">
+            修改账号信息
+        </div>
+        <div style="width: 100%; min-width: 320px; margin-bottom: 1rem;">
+            <label style="float:left; padding-top:0.5rem; padding-right: 15px; width:20%;">新密码</label>
+            <input class="el-input__inner" type="password" style="margin-bottom: 12px; width: 75%;" [(ngModel)]="PassWord">
+        </div>
+        <div style="width: 100%; min-width: 320px; margin-bottom: 1rem;">
+            <label style="float:left; padding-top:0.5rem; padding-right: 15px; width:20%;">重复密码</label>
+            <input class="el-input__inner" type="password" style="margin-bottom: 12px; width: 75%;" [(ngModel)]="SecPassWord">
+        </div>
+        <div style="width: 100%; min-width: 320px;">
+            <el-button type="primary" style="width:100%;" justify="space-between" (click)="UpdatePwd()">确认修改</el-button>
+        </div>
+    </div>
+</div>

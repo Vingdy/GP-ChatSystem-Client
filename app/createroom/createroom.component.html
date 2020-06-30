@@ -1,0 +1,63 @@
+<div class="top-box" class="top-box" *ngIf="this.User.role != 'admin'">
+    <div class="top-title-box">
+        <div class="top-title">在线聊天室 Let's Talk</div>
+        <div class="user-box">
+            <div class="nav-box" (click)=LogOut()>
+                <a>退出登录</a>
+            </div>
+            <div class="nav-box" (click)=ToUserInfo()>
+                <a>我的信息</a>
+            </div>
+            <div class="nav-box" (click)=ToFriend()>
+                <a>查看好友</a>
+            </div>
+            <div *ngIf="this.User.Role != 'manager'" class="nav-box" (click)=ToCreateRoom()>
+                <a>创建房间</a>
+            </div>
+            <div class="wel-box">
+                欢迎来到聊天室，{{UserName}}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="top-box" *ngIf="this.User.role == 'admin'">
+    <div class="top-title-box">
+        <div class="top-title">在线聊天室 Let's Talk</div>
+        <div class="user-box">
+            <div class="nav-box" (click)=LogOut()>
+                <a>退出登录</a>
+            </div>
+            <div class="nav-box" (click)=ToUserRole()>
+                <a>权限管理</a>
+            </div>
+            <div class="nav-box" (click)=ToRoom()>
+                <a>房间管理</a>
+            </div>
+            <div class="nav-box" (click)=ToUser()>
+                <a>用户管理</a>
+            </div>
+            <div class="wel-box">
+                欢迎管理员，{{UserName}}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main-box">
+    <el-button type="primary" style="position: absolute; top: 5rem; left: 2rem;" justify="space-between" (click)="ToBackRoom()">返回上级</el-button>
+    <div class="login-box">
+        <div class="title-box">
+            房间创建
+        </div>
+        <div style="width: 100%; min-width: 320px; margin-bottom:1rem;">
+            <label style="float:left; padding-top:0.5rem; padding-right: 15px; width:20%;">房间名</label>
+            <input class="el-input__inner" style="width: 75%;"
+            require #rangeLength="ngModel" [rangeLength]="[1, 16]"
+            [(ngModel)]="NewRoomName" placeholder="请输入密码">
+            <p style="color:red; font-size:10px;" [hidden]="rangeLength.valid||rangeLength.pristine">长度在1到16之间</p>
+        </div>
+        <div style="width: 100%; min-width: 320px;">
+            <el-button type="primary" style="width:100%;" justify="space-between" (click)="CreateRoom()">确认创建</el-button>
+        </div>
+    </div>
+</div>
+

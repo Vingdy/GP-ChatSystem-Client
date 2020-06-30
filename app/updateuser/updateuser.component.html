@@ -1,0 +1,57 @@
+<div class="top-box">
+    <div class="top-title-box">
+        <div class="top-title">在线聊天室 Let's Talk</div>
+        <div class="user-box">
+            <div class="nav-box" (click)=LogOut()>
+                <a>退出登录</a>
+            </div>
+            <div class="nav-box" (click)=ToUserInfo()>
+                <a>我的信息</a>
+            </div>
+            <div class="nav-box" (click)=ToFriend()>
+                <a>查看好友</a>
+            </div>
+            <div *ngIf="this.User.Role == 'member'" class="nav-box" (click)=ToCreateRoom()>
+                <a>创建房间</a>
+            </div>
+            <div class="wel-box">
+                欢迎来到聊天室，{{UserName}}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main-box">
+    <div style="position: absolute; top: 5rem; left: 2rem;" >
+        <a [routerLink]="['/user']" [queryParams] = "{userid:this.Id}"><<返回上级</a>
+    </div>
+    <div class="login-box">
+        <div class="title-box">
+            修改个人信息
+        </div>
+        <div style="width: 100%; min-width: 320px; margin-bottom: 1rem;">
+            <label style="float:left; padding-top:0.5rem; padding-right: 15px; width:20%;">昵称</label>
+            <input class="el-input__inner" style="margin-bottom: 12px; width: 75%;" [(ngModel)]="UserInfo.nickname">
+        </div>
+        <div style="width: 100%; min-width: 320px; margin-bottom: 1rem;">
+            <label style="float:left; padding-top:0.5rem; padding-right: 15px; width:20%;">标签</label>
+            <input class="el-input__inner" style="margin-bottom: 12px; width: 75%;" [(ngModel)]="UserInfo.label">
+        </div>
+        <div style="width: 100%; min-width: 320px; margin-bottom: 1rem;">
+            <label style="float:left; padding-top:0.5rem; padding-right: 15px; width:20%;">电话</label>
+            <input class="el-input__inner" style="margin-bottom: 12px; width: 75%;" [(ngModel)]="UserInfo.phone">
+        </div>
+        <div style="width: 100%; min-width: 320px; margin-bottom: 1rem;">
+            <label style="float:left; padding-top:0.5rem; padding-right: 15px; width:20%;">字体选择</label>
+            <input class="el-input__inner" style="margin-bottom: 5px; width: 75%;" [(ngModel)]="UserInfo.fonttype">
+            <p style="color:blue; font-size:10px;margin-bottom: 1rem;">支持宋体、微软雅黑、黑体、幼圆等</p>
+        </div>
+        <div style="width: 100%; min-width: 320px; margin-bottom: 1rem;">
+            <label style="float:left; padding-top:0.5rem; padding-right: 15px; width:20%;">字体颜色</label>
+            <input class="el-input__inner" style="margin-bottom: 5px; width: 75%;" [(ngModel)]="UserInfo.fontcolor">
+            <p style="color:blue; font-size:10px;margin-bottom: 1rem;">格式:#xxxxxx/颜色英文 例子:#000000/red</p>
+        </div>
+        <div style="width: 100%; min-width: 320px;">
+            <el-button type="primary" style="width:100%;" justify="space-between" (click)="UpdateUser()">确认修改</el-button>
+        </div>
+    </div>
+</div>

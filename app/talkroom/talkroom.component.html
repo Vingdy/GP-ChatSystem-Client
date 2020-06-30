@@ -1,0 +1,61 @@
+<div class="top-box">
+    <div class="top-title-box">
+        <div class="top-title">在线聊天室 Let's Talk</div>
+        <div class="user-box">
+            <div class="nav-box" (click)=LogOut()>
+                <a>退出登录</a>
+            </div>
+            <div class="nav-box" (click)=ToUserInfo()>
+                <a>我的信息</a>
+            </div>
+            <div class="nav-box" (click)=ToFriend()>
+                <a>查看好友</a>
+            </div>
+            <div *ngIf="this.User.Role == 'member'" class="nav-box" (click)=ToCreateRoom()>
+                <a>创建房间</a>
+            </div>
+            <div class="wel-box">
+                欢迎来到聊天室，{{UserName}}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mid-box">   
+    <div class="room-name">
+        当前房间:{{RoomName}}
+    </div>
+    <el-button type="primary" icon="el-icon-d-arrow-right" style="width:10%;float: right; margin-top:0.8rem; margin-right: 3rem;" justify="space-between" (click)="ChangeRoom(this.NewRoom)">进入房间</el-button>
+    <el-cascader *ngIf="isDataLoaded" style="float: right; margin-top:0.8rem; margin-right: 1rem;" [(ngModel)]="NewRoom" [options]="this.Options"></el-cascader>
+</div>
+<div class="main-box">
+    <div class="content-main-box">
+            <div class="content-box" style="padding:10px;">
+                <div *ngFor="let messagedata of MessageData" height="300px">
+                    <div class="user-message" *ngIf="messagedata.type == 'join'" >
+                        <label>{{messagedata.name}}加入了房间</label>
+                    </div>
+                    <div class="user-message" *ngIf="messagedata.type == 'leave'" >
+                        <label>{{messagedata.name}}离开了房间</label>
+                    </div>
+                    <div class="chat-message" *ngIf="messagedata.type == 'message'" >
+                        <div [ngStyle]="{'color':messagedata.realname == this.User.username? '#00965e':'#00f'}" style="width: 100%;margin:5px;">{{messagedata.label}}    {{messagedata.name}}    {{messagedata.time}}</div>
+                        <div [ngStyle]="{'font-family':messagedata.fonttype,'color':messagedata.fontcolor}" style="width: 100%;margin:5px;">{{messagedata.message}}</div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+<div class="number-box">
+    <div class="member-title">
+        <label >当前在线</label>
+    </div>
+    <div class="member-box" >
+        <div *ngFor="let member of NowMember; let i of index" class="member">
+            {{member}}
+        </div>
+    </div>
+</div>
+<div class="write-box">
+    <textarea placeholder="请输入内容" class="write-content-box" [(ngModel)]="MessageContent"></textarea>
+    <el-button type="primary" style="width:10%; float: right; margin-top:0.3rem; margin-right: 3rem;" justify="end" (click)="Send(this.MessageContent)">发送</el-button>
+</div>

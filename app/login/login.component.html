@@ -1,0 +1,26 @@
+<div class="top-box">
+    <div class="top-title-box">
+        <span class="top-title">在线聊天室 Let's Talk</span>    
+    </div>
+</div>
+<div class="main-box">
+    <div class="login-box">
+        <div class="title-box">
+            登录
+        </div>
+        <div style="width: 100%; min-width: 320px; margin-top:1rem;">
+            <label style="float:left; padding-top:0.5rem; padding-right: 15px; width:20%;">账号</label>
+            <input class="el-input__inner" style="width: 75%;" require [(ngModel)]="UserName" placeholder="请输入账号">
+        </div>
+        <div style="width: 100%; min-width: 320px; margin-top:1rem;">
+            <label style="float:left; padding-top:0.5rem; padding-right: 15px; width:20%;">密码</label>
+            <input class="el-input__inner" type="password" style="width: 75%;" require [(ngModel)]="PassWord" placeholder="请输入密码">
+        </div>
+        <div style="width: 100%; min-width: 320px; text-align: right;">
+            <el-button type="text" style="margin-bottom: 32px;" justify="space-between" (click)="ToRegister()">没有账号？立即注册</el-button>
+        </div>
+        <div style="width: 100%; min-width: 320px;">
+            <el-button type="primary" style="width:100%;" justify="space-between" (click)="Login()">登录</el-button>
+        </div>
+    </div>
+</div>

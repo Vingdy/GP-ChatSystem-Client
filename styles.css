@@ -1,0 +1,11 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~element-angular/theme/index.css"; 
+.el-switch__label.is-active {
+    color:#000000;
+} 
+.el-switch__label--left {
+    color: #999999; 
+}
+.el-switch__label--right {
+    color: #999999;
+} 

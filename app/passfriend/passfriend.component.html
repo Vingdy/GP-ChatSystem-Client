@@ -1,0 +1,49 @@
+<div class="top-box">
+    <div class="top-title-box">
+        <div class="top-title">在线聊天室 Let's Talk</div>
+        <div class="user-box">
+            <div class="nav-box" (click)=LogOut()>
+                <a>退出登录</a>
+            </div>
+            <div class="nav-box" (click)=ToUserInfo()>
+                <a>我的信息</a>
+            </div>
+            <div class="nav-box" (click)=ToFriend()>
+                <a>查看好友</a>
+            </div>
+            <div *ngIf="this.User.Role == 'member'" class="nav-box" (click)=ToCreateRoom()>
+                <a>创建房间</a>
+            </div>
+            <div class="wel-box">
+                欢迎来到聊天室，{{UserName}}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main-box">
+    <div style="position: absolute; top: 5rem; left: 2rem;" >
+        <a [routerLink]="['/friend']"><<返回上级</a>
+    </div>
+    <div class="login-box">
+        <div *ngIf="this.UserList == []" style="margin: 60px auto; text-align:center;">
+            列表为空
+        </div>
+        <div *ngFor="let user of UserList; let i of index" class="title-box">
+            
+            <a [routerLink]="['/user']" [queryParams] = "{userid:this.user.id}">
+            <div class="card" (click)="ToUser(i)">
+                <div style="margin-top:10px; margin-left:20px; width: 100%;color:blue; font-size:20px;">
+                    {{user.label}}
+                </div>
+                <div style="width: 100%; text-align:center; margin-top: 5px; margin-bottom: 5px; font-size:30px;">
+                    {{user.friendname}}
+                </div>
+            </div>
+            </a>
+            <div style="width: 240px;height: 30px;margin: 0.5rem;">
+                <el-button type="success" style="width:45%;" justify="space-left" (click)="FirstPassFriend(this.user.id, this.user.username, this.user.friendname)">同意</el-button>
+                <el-button type="danger" style="width:45%;" justify="space-right" (click)="UnPassFriend(this.user.id)">拒绝</el-button>
+            </div>
+        </div>
+    </div>
+</div>

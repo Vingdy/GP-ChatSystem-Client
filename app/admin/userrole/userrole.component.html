@@ -1,0 +1,40 @@
+<div class="top-box">
+    <div class="top-title-box">
+        <div class="top-title">在线聊天室 Let's Talk</div>
+        <div class="user-box">
+            <div class="nav-box" (click)=LogOut()>
+                <a>退出登录</a>
+            </div>
+            <div class="nav-box" (click)=ToUserRole()>
+                <a>权限管理</a>
+            </div>
+            <div class="nav-box" (click)=ToRoom()>
+                <a>房间管理</a>
+            </div>
+            <div class="nav-box" (click)=ToUser()>
+                <a>用户管理</a>
+            </div>
+            <div class="wel-box">
+                欢迎管理员，{{UserName}}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main-box">
+    <div class="login-box">
+        <div class="title-box">
+            账号权限管理
+        </div>
+        <div *ngFor="let userlist of UserList; let i = index;" height="300px">
+            <div *ngIf="userlist.role != 'admin'" style="width: 100%; min-width: 600px; margin-bottom: 1rem;">
+                <label style="float:left; padding-right: 15px; width: 15%;">账号</label>
+                <label style="margin-bottom: 32px; width: 55%;">{{userlist.username}}</label>
+                <el-switch style="float:right; width: 30%;" [(ngModel)]="userlist.role" 
+                inactive-color="#C0CCDA" active-color="#F0E68C" active-text="高级" inactive-text="普通"
+                active-value="1" inactive-value="0"
+                (click)="RoleChange(i)"
+                ></el-switch>
+            </div>
+        </div>
+    </div>
+</div>

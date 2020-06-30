@@ -1,0 +1,90 @@
+<div class="top-box">
+    <div class="top-title-box">
+        <div class="top-title">在线聊天室 Let's Talk</div>
+        <div class="user-box">
+            <div class="nav-box" (click)=LogOut()>
+                <a>退出登录</a>
+            </div>
+            <div class="nav-box" (click)=ToUserInfo()>
+                <a>我的信息</a>
+            </div>
+            <div class="nav-box" (click)=ToFriend()>
+                <a>查看好友</a>
+            </div>
+            <div *ngIf="this.User.Role == 'member'" class="nav-box" (click)=ToCreateRoom()>
+                <a>创建房间</a>
+            </div>
+            <div class="wel-box">
+                欢迎来到聊天室，{{UserName}}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main-box">
+    <div style="position: absolute; top: 5rem; left: 2rem;" >
+        <a [routerLink]="['/talkroom']"><<返回聊天</a>
+    </div>
+    <div class="login-box" style="max-width: 40%;">
+        <div class="title-box">
+            账号信息
+        </div>
+        <div style="width: 100%; min-width: 320px; margin-bottom: 1rem;">
+            <label style="float:left; padding-right: 15px; width: 20%;">账号</label>
+            <label style="margin-bottom: 32px; width: 80%;">{{UserInfo.username}}</label>
+        </div>
+        <div style="width: 100%; min-width: 320px; margin-bottom: 1rem;">
+            <label style="float:left; padding-right: 15px; width: 20%;">昵称</label>
+            <label style="margin-bottom: 32px; width: 80%;">{{UserInfo.nickname}}</label>
+        </div>
+        <div style="width: 100%; min-width: 320px; margin-bottom: 1rem;">
+            <label style="float:left; padding-right: 15px; width: 20%;">标签</label>
+            <label style="margin-bottom: 32px; width: 80%;">{{UserInfo.label}}</label>
+        </div>
+        <div style="width: 100%; min-width: 320px; margin-bottom: 1rem;">
+            <label style="float:left; padding-right: 15px; width: 20%;">电话</label>
+            <label style="margin-bottom: 32px; width: 80%;">{{UserInfo.phone}}</label>
+        </div>
+        <div style="width: 100%; min-width: 320px; margin-bottom: 1rem;">
+            <label style="float:left; padding-right: 15px; width: 20%;">字体选择</label>
+            <label style="margin-bottom: 32px; width: 80%;">{{UserInfo.fonttype}}</label>
+        </div>
+        <div style="width: 100%; min-width: 320px; margin-bottom: 1rem;">
+            <label style="float:left; padding-right: 15px; width: 20%;">字体颜色</label>
+            <label style="margin-bottom: 32px; width: 80%;">{{UserInfo.fontcolor}}</label>
+        </div>
+        <div style="width: 100%; min-width: 320px; margin-bottom: 1rem;">
+            <label style="float:left; padding-right: 15px; width: 20%;">账号状态</label>
+            <label *ngIf="UserInfo.isban=='已封禁'&&isDataLoaded" style="margin-bottom: 32px; width: 80%; color:red;">{{UserInfo.isban}}</label>
+            <label *ngIf="UserInfo.isban=='正常'&&isDataLoaded" style="margin-bottom: 32px; width: 80%;">{{UserInfo.isban}}</label>
+        </div>
+        <div *ngIf="this.User.id == this.UserInfo.id" style="width: 100%; margin-top: 1rem;margin-bottom: 1rem; float: left">
+            <el-button type="primary" style="width:40%;" justify="space-between" (click)=ToUpdateUser()>修改信息</el-button>
+            <el-button type="primary" style="width:40%;" justify="space-between" (click)=ToUpdatePwd()>修改密码</el-button>
+        </div>
+        <div *ngIf="!isFriend && this.User.id != this.UserInfo.id" style="width: 100%; margin-top: 1rem;margin-bottom: 1rem; float: left">
+            <el-button type="primary" style="width:40%;" justify="space-between" (click)="NewFriend()">添加好友</el-button>
+        </div>
+        <div *ngIf="isFriend || this.User.id == this.UserInfo.id" style=" width: 100%; margin-top: 1rem;margin-bottom: 1rem;">
+            <div>
+                留言
+            </div>
+            <div *ngFor="let comment of CommentList" style="width: 100%; margin-top: 1rem;margin-bottom: 1rem;">
+                <div style="background-color: #FFFFFF; padding: 5px; width:100%; text-align:left;word-wrap: break-word;">
+                    <div style="width:100%;">
+                    {{comment.fromnickname}}:
+                    </div>
+                    <div style="width:100%;margin-top:5px; margin-bottom:5px;">
+                    {{comment.comment}}
+                    </div>
+                    <div style="width:100%;text-align:right;">
+                    {{comment.time}}
+                    </div>
+                </div>
+            </div>
+            <div class="write-box">
+                <textarea placeholder="请输入内容" class="write-content-box" [(ngModel)]="CommentContent"></textarea>
+                <el-button type="primary" style="width:20%; float: right; margin-top:0.3rem; " justify="end" (click)="NewComment()">发送</el-button>
+            </div>
+        </div>
+    </div>
+</div>
